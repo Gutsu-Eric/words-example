@@ -1,8 +1,9 @@
 import shuffle from "lodash/shuffle";
 
 export class Task {
-    constructor() {
+    constructor({ type }) {
         this._info = "";
+        this.type = type;
         if (this.constructor === Task) {
             throw new Error("It's not possible to create an instance of abstract class");
         }
@@ -44,7 +45,7 @@ Task._subclasses = {};
 
 export class WordTask extends Task {
     constructor({question, answer}) {
-        super();
+        super(...arguments);
         this._info = "Соберите слово по буквам";
         this.question = shuffle(question);  //shuffle сам строку в массив переводит
         this._answer = answer;
@@ -70,7 +71,7 @@ export class WordTask extends Task {
 
 export class PhraseTask extends Task {
     constructor({question}) {
-        super();
+        super(...arguments);
         this._info = "Соберите фразу по словам";
         this.question = shuffle(question.split(" "));  //shuffle сам строку в массив переводит
         this._answer = question.split(" ");
@@ -96,7 +97,7 @@ export class PhraseTask extends Task {
 
 export class TranslateTask extends Task {
     constructor({question, answer}) {
-        super();
+        super(...arguments);
         this._info = "Переведите слово";
         this.question = question;
         this._answer = answer.toLowerCase();

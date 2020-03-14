@@ -45,9 +45,27 @@ export default class UIController {
 
     ["_task:changed"]() {
         const {task} = this._test;
+        document.write(task.type + "<br>");
         document.write(task.getDescription() + "<br>");
         document.write(task.question);
 
         task.checkAnswer("I");
+
+        // TODO: создать компонент для отображаения задачи
+        // const component = TaskComponent.create({task.type, {info:task.info, question: task.question });
+        // questionContainer - DOM - элемент, в котором нужно отобразить вопрос
+        // this._component.render(questionContainer);
+    }
+
+    ["_answer:wrong"]() {
+        // TODO: сообщить компоненту с задачей об ошибке
+        // this._component.displayError();
+        console.log("Неправильный ответ");
+    }
+
+    ["_answer:wrong"]() {
+        // TODO: сообщить компоненту с задачей о корректном ответе
+        // this._component.displaySuccess();
+        console.log("Правильный ответ");
     }
 }
